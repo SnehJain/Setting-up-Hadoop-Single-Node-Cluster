@@ -1,1 +1,1 @@
-# Setting-up-Hadoop-Single-Node-Cluster
+# Setting-up-Hadoop-Single-Node-Cluster ON LINUXMINT
