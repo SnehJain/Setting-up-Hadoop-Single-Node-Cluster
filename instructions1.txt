@@ -1,0 +1,82 @@
+# Setting up hadoop so=ingle node cluster from scratch
+
+# Download hadoop-2.7.2.tar.gz from apache.org in your downloads folder
+
+#download and install Java in your machine with this cmd
+% sudo apt-get install openjdk-7-jdk
+
+# After installation of  is completed 
+% cd /usr/lib/jvm
+% cd java-7-openjdk-amd64 (or) cd java-7-openjdk-i386
+% pwd : present working directory path will be echoed copy the path
+
+#append java home in ~/.bashrc file ,  view .bashrc file in repository
+(or)
+#export java home like this
+% export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64/
+
+# apply .bashrc file after an update type this cmd
+% source ~/.bashrc
+#file will be applied with updates.
+
+# to simply check your java type these two cmds
+% java -version
+
+OR 
+
+% echo $JAVA_HOME
+
+
+# We need to install Secure Shell , to install ssh type in terminal
+% sudo apt-get install openssh-server
+
+% sudo service ssh start
+
+#to generate public and private keys type
+% ssh-keygen -t rsa -P ""
+
+# A new file wiil be generated $HOME/.ssh/id_rsa.pub
+
+% cat $HOME/.ssh/id_rsa.pub >> $HOME/.ssh/authorized_keys
+
+#now type 
+% ssh localhost
+
+#you'll able to welcome message.
+
+
+# now go to your Downloads directory 
+untar the downloaded hadoop.<version>.tar.gz file
+
+% tar xzvf hadoop-2.7.2.tar.gz
+
+%ls
+
+#a new dir will be visible in the same Downloads Dir with name "hadoop-2.7.2".
+
+# make new directory in /usr/local
+% sudo mkdir /usr/local/hadoop
+
+#move the contents of the extracted hadoop-2.7.2 dir to the new directory /usr/local/hadoop
+% sudo mv $HOME/Downloads/hadoop-2.7.2/* /usr/local/hadoop/
+
+
+# now again edit the $HOME/.bashrc file and append these hadoop variables.
+
+#hadoop variables
+export HADOOP_HOME=/usr/local/hadoop 
+export HADOOP_MAPRED_HOME=$HADOOP_HOME 
+export HADOOP_COMMON_HOME=$HADOOP_HOME 
+export HADOOP_HDFS_HOME=$HADOOP_HOME 
+export YARN_HOME=$HADOOP_HOME
+export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native 
+export PATH=$PATH:$HADOOP_HOME/sbin:$HADOOP_HOME/bin
+
+#save the .bashrc file and apply it using this cmd
+%source ~/.bashrc
+
+# To check whether hadoop variables had been set or not just type 
+% echo $HADOOP_HOME 
+: PATH of Hadoop must be echoed like this /usr/local/hadoop
+
+now go and view instructions2.txt file repository.
